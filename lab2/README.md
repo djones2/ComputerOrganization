@@ -1,1 +1,1 @@
-A MIPS simulator front-end assembler/parser. 
+A 2-pass MIPS simulator front-end assembler/parser in Java.  This assembler will load in MIPS assembly files and output the corresponding machine code (to the screen). The input to the assembler will be MIPS assembly files with comments, labels, and whitespace (spaces and tabs). 
