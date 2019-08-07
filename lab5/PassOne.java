@@ -10,6 +10,7 @@ public class PassOne {
 		String currentLine;
 		String label;
 		Scanner scan;
+		int index;
 
 		scan = new Scanner(input);
 		result = "";
@@ -22,28 +23,35 @@ public class PassOne {
 			currentLine = stripComments(currentLine);
 
 			if (lineHasLabel(currentLine)) {
-				label = makeLabel(currentLine);
-				if((label + ":").compareTo(currentLine) == 0){
-					try{
-						do{
-							currentLine = scan.nextLine();
-							currentLine = stripComments(currentLine);
-							if(lineHasLabel(currentLine))
-								throw new SyntaxException("Two labels on one line");
-						} while (currentLine.compareTo("") == 0);
-						currentLine = label + ": " + currentLine;
-					}
-					catch (NoSuchElementException e){
-						throw new SyntaxException("Label at end of file");						
+				label = "";
+				while(lineHasLabel(currentLine)){
+					label = label + makeLabel(currentLine) + ":";
+					currentLine = removeLabel(currentLine);
+				}
+
+				try{
+					while(currentLine.compareTo("")==0){
+						currentLine = scan.nextLine();
+						currentLine = stripComments(currentLine);
+						if(lineHasLabel(currentLine)){
+							while (lineHasLabel(currentLine)){
+								label = label + makeLabel(currentLine) + ":";
+								currentLine = removeLabel(currentLine);
+								currentLine = currentLine.trim();
+
+						}
 					}
 				}
+				currentLine = label + currentLine;
+			}
+				catch (NoSuchElementException e){
+					currentLine = label;
+				} 
 			}
 
-			/* Replace characters for readability by PassTwo */
-
-			currentLine = currentLine.replace(",", ", ");
 			currentLine = currentLine.replace("$", " $");
 			currentLine = currentLine.replace("( $", "($");
+			currentLine = currentLine.replace(",", ", ");
 
 			if (currentLine.compareTo("") != 0)
 				result = result + currentLine + "\n";
@@ -55,8 +63,7 @@ public class PassOne {
 
 	public static String makeLabel(String input) {
 		if (lineHasLabel(input)) 
-			return input.substring(0, input.indexOf(":"));
-		
+			return input.substring(0, input.indexOf(":"));		
 		return "";
 	}
 	
