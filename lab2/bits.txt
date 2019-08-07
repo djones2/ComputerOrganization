@@ -1,0 +1,41 @@
+add: 0000 00ss ssst tttt dddd d000 0010 0000
+
+sub: 0000 00ss ssst tttt dddd d000 0010 0010
+
+slt: 0000 00ss ssst tttt dddd d000 0010 1010
+
+beq: 0001 00ss ssst tttt 16-bit immediate
+
+sw:  1010 11ss ssst tttt 16-bit immediate
+
+bne: 0001 01ss ssst tttt 16-bit immediate
+
+j:   0000 10 26-bit immediate
+
+jr:  0000 00ss sss0 0000 0000 0000 0000 1000
+ 
+jal: 0000 11 26-bit immediate
+
+and: 0000 00ss ssst tttt dddd d000 0010 0100
+
+or:  0000 00ss ssst tttt dddd d000 0010 0101
+
+lw:  1000 11ss ssst tttt 16-bit immediate
+
+addi:0010 00ss ssst tttt 16-bit immediate
+
+sll: 0000 00ss ssst tttt dddd dhhh hh00 0000
+
+General layout:
+
+[0:5] - Opcode
+
+[6:10] - 1st source register
+
+[11:15] - 2nd source register
+
+[16:20] - Destination
+
+[21:25] - Shift amount
+
+[26:31] - 2nd OpCode
