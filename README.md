@@ -8,3 +8,5 @@ Developed in MIPS Assembly and Java.
 
 Content in this repository is my own personal work. Reuse for the purpose of
 academic projects is a violation of Cal Poly's Academic Dishonesty Policy.
+
+Each lab has an associated README with an in-depth description of the program's purpose. 
